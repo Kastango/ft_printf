@@ -6,7 +6,7 @@
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 02:50:36 by arbernar          #+#    #+#             */
-/*   Updated: 2021/12/12 21:27:03 by coder            ###   ########.fr       */
+/*   Updated: 2021/12/13 03:19:29 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,19 @@ static int	ft_print_number_flag(va_list *argptr, char flag)
 
 	lenght = 0;
 	if (flag == 'p')
-		lenght += ft_check_hex((unsigned long int)va_arg(*argptr, void *),"0123456789abcdef", flag);
+		lenght += ft_check_hex((unsigned long int)va_arg(*argptr, void *),
+				"0123456789abcdef", flag);
 	else if (flag == 'i' || flag == 'd')
 		lenght += ft_putnbr_base(va_arg(*argptr, int), "0123456789", flag);
 	else if (flag == 'u')
-		lenght += ft_putnbr_base(va_arg(*argptr, unsigned int), "0123456789", flag);
+		lenght += ft_putnbr_base(va_arg(*argptr, unsigned int),
+				"0123456789", flag);
 	else if (flag == 'x')
-		lenght += ft_putnbr_base(va_arg(*argptr, unsigned int), "0123456789abcdef", flag);
+		lenght += ft_putnbr_base(va_arg(*argptr, unsigned int),
+				"0123456789abcdef", flag);
 	else if (flag == 'X')
-		lenght += ft_putnbr_base(va_arg(*argptr, unsigned int), "0123456789ABCDEF", flag);
+		lenght += ft_putnbr_base(va_arg(*argptr, unsigned int),
+				"0123456789ABCDEF", flag);
 	return (lenght);
 }
 
@@ -59,7 +63,7 @@ int	ft_printf(const char *src, ...)
 	while (src[i])
 	{
 		if (src[i] == '%')
-			lenght += ft_capture_the_flag(&argptr, src[++i]); // descobrir a dif entre ++i e i++
+			lenght += ft_capture_the_flag(&argptr, src[++i]);
 		else
 			lenght += ft_putchar(src[i]);
 		i++;
